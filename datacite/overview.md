@@ -77,13 +77,10 @@ opar <- par(mai = c(0.5, 0.75, 1, 0.5), omi = c(0.5, 0.5, 0.5, 0.5), mgp = c(3,
 plot(summary$month, summary$nrow, type = "l", lwd = 3, las = 1, xlab = NA, ylab = NA, 
     ylim = c(0, 20), xaxp = c(2007, 2014, 6), bty = "n", col = "#1447f2")
 title(main = main, outer = TRUE, line = -1.25, adj = 0)
+opar <- par()
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
-
-```r
-opar <- par()
-```
 
 
 
