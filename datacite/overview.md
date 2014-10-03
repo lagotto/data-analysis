@@ -58,6 +58,8 @@ alm <- subset(alm, (substr(alm$data_doi, 1, 7) == "10.5061"))
 ```
 
 
+## Dryad DOIs in PLOS Articles by Month
+
 We can look at how the number of Dryad DOIs in PLOS papers evolved over time.
 
 
@@ -85,9 +87,6 @@ opar <- par()
 
 
 
-```r
-knit("overview.Rmd", quiet = TRUE)
-```
 
 ```
 ## [1] "overview.md"

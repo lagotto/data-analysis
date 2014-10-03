@@ -41,9 +41,11 @@ Let's limit the further analysis to Dryad for a more homogenous dataset.
 alm <- subset(alm, (substr(alm$data_doi,1,7) == "10.5061"))
 ```
 
+## Dryad DOIs in PLOS Articles by Month
+
 We can look at how the number of Dryad DOIs in PLOS papers evolved over time.
 
-```{r, fig.keep='last', fig.show='hold', fig.height = 7, fig.width = 10}
+```{r, fig.keep='last', fig.show='hold', fig.height = 7, fig.width = 12}
 # we only have partial data for September 2014
 alm_by_month <- subset(alm, alm$publication_date <= "2014-08-31")
 
@@ -60,7 +62,8 @@ opar <- par()
 ```
 
 
-```{r}
+
+```{r, echo = FALSE}
 knit("overview.Rmd", quiet = TRUE)
 ```
 
