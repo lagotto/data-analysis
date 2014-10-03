@@ -4,11 +4,11 @@ If the below packages are not installed already, then load package
 
 
 ```r
-# install.packages(c('plyr','alm','ggplot2','knitr'))
+# install.packages(c('plyr','alm','knitr','zoo'))
 library("plyr")
 library("knitr")
 library("alm")
-library("ggplot2")
+library("zoo")
 ```
 
 
@@ -22,6 +22,8 @@ input.name <- "../data/datacite_dois_in_plos_articles_2014-09-10.csv"
 alm <- read.csv(input.name, stringsAsFactors = FALSE, header = TRUE, sep = ",")
 ```
 
+
+## Analyze data
 
 Analyze where the DataCite DOIs come from using the DOI prefix
 
@@ -43,6 +45,46 @@ kable(datacenters, format = "markdown")
 |10.5281  |     1|
 |10.5441  |     5|
 |10.5524  |     2|
+
+
+Most DataCite DOIs are from Dryad (10.5061) and some from Pangaea (10.1594). Not a single DOI is from figshare, which could mean that that there are no Figshare datasets in PLOS papers, or more likely that figshare isn't sending the PLOS article DOI in the metadata it sends to DataCite.
+
+Let's limit the further analysis to Dryad for a more homogenous dataset.
+
+
+```r
+# only analyze Dryad DOIs
+alm <- subset(alm, (substr(alm$data_doi, 1, 7) == "10.5061"))
+```
+
+
+We can look at how the number of Dryad DOIs in PLOS papers evolved over time.
+
+
+```r
+# we only have partial data for September 2014
+alm <- subset(alm, alm$publication_date <= "2014-08-31")
+
+# Create a month column
+alm$month <- as.yearmon(alm$publication_date)
+summary <- ddply(alm, .(month), "nrow")
+
+# Plot the chart.
+main <- "Dryad DOIs in PLOS Articles per Month"
+opar <- par(mai = c(0.5, 0.75, 1, 0.5), omi = c(0.5, 0.5, 0.5, 0.5), mgp = c(3, 
+    1, 0), fg = "black", cex = 1, cex.main = 3, cex.lab = 2, cex.axis = 1.5, 
+    col.main = "#1447f2", col.lab = "black", col.axis = "black")
+plot(summary$month, summary$nrow, type = "l", lwd = 3, las = 1, xlab = NA, ylab = NA, 
+    ylim = c(0, 20), xaxp = c(2007, 2014, 6), bty = "n", col = "#1447f2")
+title(main = main, outer = TRUE, line = -1.25, adj = 0)
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+
+```r
+opar <- par()
+```
+
 
 
 
