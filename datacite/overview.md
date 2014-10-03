@@ -70,7 +70,7 @@ alm$month <- as.yearmon(alm$publication_date)
 summary <- ddply(alm, .(month), "nrow")
 
 # Plot the chart.
-main <- "Dryad DOIs in PLOS Articles per Month"
+main <- "Dryad DOIs in PLOS Articles"
 opar <- par(mai = c(0.5, 0.75, 1, 0.5), omi = c(0.5, 0.5, 0.5, 0.5), mgp = c(3, 
     1, 0), fg = "black", cex = 1, cex.main = 3, cex.lab = 2, cex.axis = 1.5, 
     col.main = "#1447f2", col.lab = "black", col.axis = "black")

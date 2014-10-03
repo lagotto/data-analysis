@@ -43,7 +43,7 @@ alm <- subset(alm, (substr(alm$data_doi,1,7) == "10.5061"))
 
 We can look at how the number of Dryad DOIs in PLOS papers evolved over time.
 
-```{r}
+```{r, results='hold'}
 # we only have partial data for September 2014
 alm <- subset(alm, alm$publication_date <= "2014-08-31")
 
@@ -52,7 +52,7 @@ alm$month <- as.yearmon(alm$publication_date)
 summary <- ddply(alm, .(month), "nrow")
 
 # Plot the chart.
-main <- "Dryad DOIs in PLOS Articles per Month"
+main <- "Dryad DOIs in PLOS Articles"
 opar <- par(mai=c(0.5,.75,1,0.5), omi=c(0.5,0.5,0.5,0.5), mgp=c(3,1,0), fg="black", cex=1, cex.main=3, cex.lab=2, cex.axis=1.5, col.main="#1447f2", col.lab="black", col.axis="black")
 plot(summary$month, summary$nrow, type="l", lwd=3, las=1, xlab=NA, ylab=NA, ylim=c(0,20), xaxp=c(2007,2014,6), bty="n", col="#1447f2")
 title(main=main, outer=TRUE, line=-1.25, adj=0)
