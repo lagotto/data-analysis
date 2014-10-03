@@ -1,0 +1,32 @@
+## Install packages 
+
+If the below packages are not installed already, then load package
+
+```{r}
+# install.packages(c('plyr','alm','ggplot2','knitr'))
+library('plyr')
+library('knitr')
+library('alm')
+library('ggplot2')
+```
+
+## Read in data
+
+```{r}
+input.name <- "../data/datacite_dois_in_plos_articles_2014-09-10.csv"
+
+# get list of plos DOIs with associated DataCite DOIs from CSV file
+alm <- read.csv(input.name, stringsAsFactors=FALSE, header=TRUE, sep=",")
+```
+
+Analyze where the DataCite DOIs come from using the DOI prefix
+```{r, results='asis'}
+datacenters <- count(alm, vars = "prefix")
+kable(datacenters, format = "markdown")
+```
+
+```{r}
+knit("overview.Rmd")
+```
+
+
