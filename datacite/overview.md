@@ -59,7 +59,7 @@ figshare$publication_date <- as.Date(figshare$publication_date)
 
 # Then write a csv file
 output.name <- "../data/figshare_dois_in_plos_articles_2014-10-02.csv"
-write.csv(figshare, output.name, quote = FALSE, row.names = FALSE)
+write.csv(figshare, output.name, quote = TRUE, row.names = FALSE)
 ```
 
 
@@ -128,9 +128,18 @@ alm <- subset(alm, (substr(alm$data_doi, 1, 7) == "10.5061"))
 
 
 Let's see whether the Dryad DOIs are mentioned in the PLOS article at all. We can do a fulltext search with all Dryad DOIs that we found.
+Doing a manual query against PLOS Search we get the following results (multiple hits are possible so the sum is above 346):
 
-
-
+|  section              |freq|
+|:----------------------|---:|
+|introduction           |   2|
+|materials & methods    | 179|
+|results & discussion   |  50|
+|conclusions            |   4|
+|supporting information |  19|
+|figure & table captions|   5|
+|references             |  12|
+|no mention             |  77|
 
 
 ```
