@@ -22,11 +22,16 @@ alm <- read.csv(input.name, stringsAsFactors=FALSE, header=TRUE, sep=",")
 Analyze where the DataCite DOIs come from using the DOI prefix
 ```{r, results='asis'}
 datacenters <- count(alm, vars = "prefix")
+
+# DOI prefixes are not numbers
+datacenters$prefix <-as.factor(datacenters$prefix)
+
+# generate markdown table
 kable(datacenters, format = "markdown")
 ```
 
 ```{r}
-knit("overview.Rmd")
+knit("overview.Rmd", quiet = TRUE)
 ```
 
 

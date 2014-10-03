@@ -27,60 +27,27 @@ Analyze where the DataCite DOIs come from using the DOI prefix
 
 ```r
 datacenters <- count(alm, vars = "prefix")
+
+# DOI prefixes are not numbers
+datacenters$prefix <- as.factor(datacenters$prefix)
+
+# generate markdown table
 kable(datacenters, format = "markdown")
 ```
 
-|  prefix|  freq|
-|-------:|-----:|
-|   10.16|    29|
-|   10.41|     1|
-|   10.51|   346|
-|   10.53|     1|
-|   10.54|     5|
-|   10.55|     2|
+|prefix   |  freq|
+|:--------|-----:|
+|10.1594  |    29|
+|10.4123  |     1|
+|10.5061  |   346|
+|10.5281  |     1|
+|10.5441  |     5|
+|10.5524  |     2|
 
 
 
 ```r
-knit("overview.Rmd")
-```
-
-```
-## 
-## 
-## processing file: overview.Rmd
-```
-
-```
-##   |                                                                         |                                                                 |   0%  |                                                                         |.......                                                          |  11%
-##   ordinary text without R code
-## 
-##   |                                                                         |..............                                                   |  22%
-## label: unnamed-chunk-5
-##   |                                                                         |......................                                           |  33%
-##   ordinary text without R code
-## 
-##   |                                                                         |.............................                                    |  44%
-## label: unnamed-chunk-6
-##   |                                                                         |....................................                             |  56%
-##   ordinary text without R code
-## 
-##   |                                                                         |...........................................                      |  67%
-## label: unnamed-chunk-7 (with options) 
-## List of 1
-##  $ results: chr "asis"
-## 
-##   |                                                                         |...................................................              |  78%
-##   ordinary text without R code
-## 
-##   |                                                                         |..........................................................       |  89%
-## label: unnamed-chunk-8
-##   |                                                                         |.................................................................| 100%
-##   ordinary text without R code
-```
-
-```
-## output file: overview.md
+knit("overview.Rmd", quiet = TRUE)
 ```
 
 ```
