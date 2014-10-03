@@ -63,11 +63,11 @@ We can look at how the number of Dryad DOIs in PLOS papers evolved over time.
 
 ```r
 # we only have partial data for September 2014
-alm <- subset(alm, alm$publication_date <= "2014-08-31")
+alm_by_month <- subset(alm, alm$publication_date <= "2014-08-31")
 
 # Create a month column
-alm$month <- as.yearmon(alm$publication_date)
-summary <- ddply(alm, .(month), "nrow")
+alm_by_month$month <- as.yearmon(alm_by_month$publication_date)
+summary <- ddply(alm_by_month, .(month), "nrow")
 
 # Plot the chart.
 main <- "Dryad DOIs in PLOS Articles"
